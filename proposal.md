@@ -34,6 +34,6 @@ YT Guide provides a brief description of the video content YouTube creators make
 * Be able to share your timeslot view with other users
 
 ### Links being Used:
-https://console.developers.google.com/apis/credentials?project=sigma-night-170213
+https://console.developers.google.com/apis/
 https://developers.google.com/youtube/v3/getting-started
 https://developers.google.com/youtube/v3/docs/subscriptions/list
