@@ -1,6 +1,6 @@
-#Project 4 Proposal
+# Project 4 Proposal
 
-###Project Name: YT Guide (YouTube Guide)
+### Project Name: YT Guide (YouTube Guide)
 
 
 
