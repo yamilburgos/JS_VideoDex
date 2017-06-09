@@ -8,14 +8,15 @@ YT Guide provides a brief description of the video content YouTube creators make
 * HTML, CSS & JavaScript
 * Postgres
 * Node.js
-* Express.js
-* React.js
+* Express
+* React
+* Electron
 * Bootstrap
 * YouTube's Data API
 
 ### MVP
 * Only see videos from channels that a User has already subscribed to.
-* Be able to see all videos in the timeslot view of a given day.
+* Be able to see all videos in the timeslot view of a given day (Past, Present & Future).
 * Be able to filter videos out of the timeslot view via:
 	* Timeframe (6 to 9am, 1pm, etc.)
 	* Channel (Either by dropdown or checkbox)
@@ -26,10 +27,11 @@ YT Guide provides a brief description of the video content YouTube creators make
 	* Length of Video
 	* Thumbnail Image
 	* Video Description
+* Make the site mobile friendly & cross browser via bootstrap
 
 ### Post MVP
 * Add ability to login in order for any user to customize their results
-* Be able to share timeslot view with other users
+* Be able to share your timeslot view with other users
 
 ### Links being Used:
 https://console.developers.google.com/apis/credentials?project=sigma-night-170213
