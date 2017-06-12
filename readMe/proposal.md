@@ -13,8 +13,12 @@ VideoDex provides a simplified timeline view for all video content posted on You
 * Electron
 * Bootstrap
 * YouTube's Data API
-* dailymotion's Data API
-* vimeo's API
+* Dailymotion's Data API
+* Vimeo's API
+
+### Wireframes
+![Wireframe](./mainPage.png)
+![Wireframe](./videoInfo.png)
 
 ### User Stories
 * As a user, I like to only see videos from channels that I have already subscribed to/favorited.
@@ -37,8 +41,10 @@ VideoDex provides a simplified timeline view for all video content posted on You
 * Add ability to login for all three sites (or just one or two) in order for any user to customize their results.
 * Provide the ability to share your timeslot view with other users.
 * Get recommendations for similar content on all 3 sites.
+* Get notifications for new videos that I am interested in.
+* Get real-time updates for videos newly uploaded or removed.
 
-### Links being Used:
-https://console.developers.google.com/apis/
-https://developers.google.com/youtube/v3/getting-started
-https://developers.google.com/youtube/v3/docs/subscriptions/list
+### Project Links:
+https://developer.vimeo.com/
+https://developer.dailymotion.com/api
+https://developers.google.com/youtube/v3/
