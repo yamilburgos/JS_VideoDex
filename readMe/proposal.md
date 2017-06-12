@@ -45,6 +45,6 @@ VideoDex provides a simplified timeline view for all video content posted on You
 * Get real-time updates for videos newly uploaded or removed.
 
 ### Project Links:
-https://developer.vimeo.com/
-https://developer.dailymotion.com/api
-https://developers.google.com/youtube/v3/
+* https://developer.vimeo.com/
+* https://developer.dailymotion.com/api
+* https://developers.google.com/youtube/v3/
