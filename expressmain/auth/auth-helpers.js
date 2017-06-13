@@ -30,5 +30,5 @@ module.exports = {
     comparePass,
     loginRedirect,
     loginRequired,
-    createNewUser
+    // createNewUser
 }
