@@ -6,7 +6,7 @@ export default class Main extends Component {
 
 	loggingUserName() {
 		console.log("Hey there!");
-		axios.post("https://videodex-database.herokuapp.com/login", {
+		axios.post("https://videodex-database.herokuapp.com/auth/login", {
 			auth: true
 		}).then(function(res) {
 			console.log(res);

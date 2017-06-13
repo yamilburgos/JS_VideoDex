@@ -17,8 +17,8 @@ VideoDex provides a simplified timeline view for all video content posted on You
 * Vimeo's API
 
 ### Wireframes
-![Wireframe](./mainPage.png)
-![Wireframe](./videoInfo.png)
+![Wireframe](./readME/mainPage.png)
+![Wireframe](./readMe/videoInfo.png)
 
 ### User Stories
 * As a user, I like to only see videos from channels that I have already subscribed to/favorited.
