@@ -9,7 +9,6 @@ import TimeLine from "./timeline";
 import VideoData from "./videoData";
 
 export default class Main extends Component {
-
 	loggingUserName() {
 		console.log("Hey there!");
 		axios.post("https://videodex-database.herokuapp.com/auth/login", {

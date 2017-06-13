@@ -2,7 +2,9 @@
 
 ### Project Name: VideoDex
 
-VideoDex provides a simplified timeline view for all video content posted on YouTube, Vimeo and Dailymotion via a timeslot fashion. Meaning a user subscribed to one or all three of these sites have one place to get all of their video content on a given day. 
+VideoDex provides a simplified timeline view for all video content posted on YouTube, Vimeo and Dailymotion via a timeslot fashion. Meaning a user subscribed to one or all three of these sites have one place to get all of their video content on a given day.
+* Web Server: https://videodex-database.herokuapp.com/
+* Web Site: https://videodex.herokuapp.com/
 
 ### Tech Stack
 * HTML, CSS & JavaScript
@@ -17,7 +19,7 @@ VideoDex provides a simplified timeline view for all video content posted on You
 * Vimeo's API
 
 ### Wireframes
-![Wireframe](./readME/mainPage.png)
+![Wireframe](./readMe/mainPage.png)
 ![Wireframe](./readMe/videoInfo.png)
 
 ### User Stories
