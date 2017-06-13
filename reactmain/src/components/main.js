@@ -8,6 +8,8 @@ export default class Main extends Component {
 		console.log("Hey there!");
 		axios.post("https://videodex-database.herokuapp.com/login", {
 			auth: true
+		}).then(function(res) {
+			console.log(res);
 		});
 	}
 
@@ -24,16 +26,16 @@ export default class Main extends Component {
 				<p>Dailymotion</p> <p>Inactive | Log In</p>
 
 				<select name="site">
-					<option value="YouTube">Site Filter<input type="checkbox"/></option>
+					<option value="YouTube">Site Filter</option>
 				</select>
 				<select name="categories">
-					<option value="YouTube">Categories Filter<input type="checkbox"/></option>
+					<option value="YouTube">Categories Filter</option>
 				</select>
 				<select name="length">
-					<option value="YouTube">Length Filter<input type="checkbox"/></option>
+					<option value="YouTube">Length Filter</option>
 				</select>
 				<select name="timeframe">
-					<option value="YouTube">Timeframe Filter<input type="checkbox"/></option>
+					<option value="YouTube">Timeframe Filter</option>
 				</select>
 
 				<p>12 to 1 pm</p>
