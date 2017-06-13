@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const passport = require('../services/auth/local');
-const authHelpers = require('../services/auth/auth-helpers');
+//const passport = require('../services/auth/local');
+//const authHelpers = require('../services/auth/auth-helpers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

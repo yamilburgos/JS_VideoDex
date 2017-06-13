@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Route, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 export default class Main extends Component {
 
+	loggingUserName() {
+		console.log("Hey there!");
+		axios.post("https://videodex-database.herokuapp.com/login", {
+			auth: true
+		});
+	}
 
 	render() {
 		return (
 			<div className="App-header">
+				{this.loggingUserName()}
 				<h1>VideoDex</h1>
 				<h2>Today</h2>
 				<input type="date"/>
