@@ -11,7 +11,7 @@ import VideoData from "./videoData";
 export default class Main extends Component {
 	loggingUserName() {
 		console.log("Hey there!");
-		axios.post("https://videodex-database.herokuapp.com/youtube", {
+		axios.post("https://videodex-database.herokuapp.com/auth/youtube", {
 			auth: false
 		}).then(function(res) {
 			console.log(res);

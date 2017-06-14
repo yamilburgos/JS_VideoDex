@@ -1,20 +1,3 @@
- var express = require('express');
- var router = express.Router();
-
-//const passport = require('../services/auth/local');
-//const authHelpers = require('../services/auth/auth-helpers');
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-// const express = require('express');
-// const router = express.Router();
-
-// const passport = require('../auth/local');
-const authHelpers = require('../auth/auth-helpers');
-
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
@@ -27,15 +10,15 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json';
 
-// // Load client secrets from a local file.
-// fs.readFile('client_secret.json', function processClientSecrets(error, content) {
-//   if (error) {
-//     console.log('Error loading client secret file: ' + error);
-//     return;
-//   }
-//   // Authorize a client with the loaded credentials, then call the YouTube API.
-//   authorize(JSON.parse(content), getChannel);
-// });
+// Load client secrets from a local file.
+fs.readFile('client_secret.json', function processClientSecrets(error, content) {
+  if (error) {
+    console.log('Error loading client secret file: ' + error);
+    return;
+  }
+  // Authorize a client with the loaded credentials, then call the YouTube API.
+  authorize(JSON.parse(content), getChannel);
+});
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -135,43 +118,3 @@ function getChannel(auth) {
     }
   });
 }
-
-// LOGIN ROUTE
-router.post('/youtube', function() {
-//   Load client secrets from a local file.
-fs.readFile('../client_secret.json', function processClientSecrets(error, content) {
-  if (error) {
-    console.log('Error loading client secret file: ' + error);
-    return;
-  }
-  // Authorize a client with the loaded credentials, then call the YouTube API.
-  authorize(JSON.parse(content), getChannel);
-})
-}
-
-  // function(req, res) {
-  //   // If this function gets called, authentication was successful.
-  //   // `req.user` contains the authenticated user.
-  //   res.status(201).send({ user_profile: req.user, loggedIn: true });
-  // },
-  // function(err, req, res, next) {
-  //   // handle error
-  //   if (err) { 
-  //     return res.status(200).send({ status: "Invalid Credentials", loggedIn: false }); 
-  //   }
-  // }
-);  
-
-
-
-// // LOGOUT ROUTE
-// router.get('/logout', (req, res) => {
-//   req.logout();
-//   res.status(200).json({
-//     loggedIn: false
-//   });
-// });
-
-module.exports = router;
-
-// module.exports = router;
