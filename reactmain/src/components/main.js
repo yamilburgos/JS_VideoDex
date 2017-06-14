@@ -3,10 +3,9 @@ import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 // Import Components
-import LogStatus from "./logStatus";
-import Filters from "./filters";
-import TimeLine from "./timeline";
-import VideoData from "./videoData";
+import Header from "./header";
+import Search from "./search";
+import Data from "./data";
 
 export default class Main extends Component {
 	loggingUserName() {
@@ -22,13 +21,9 @@ export default class Main extends Component {
 		return (
 			<div className="App-header">
 				{this.loggingUserName()}
-				<h1>VideoDex</h1>
-				<h2>Today</h2>
-				<input type="date"/>
-				<LogStatus/>
-				<Filters/>
-				<TimeLine/>
-				<VideoData/>
+				<Header/>
+				<Search/>
+				<Data/>
 			</div>
 		);
 	}
