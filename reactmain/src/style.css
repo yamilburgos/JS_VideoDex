@@ -19,6 +19,51 @@
     border: 4px solid black;
 }
 
+
+/*============================================*/
+
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.siteCheckList,
+.lengthCheckList,
+.categoryCheckList {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+.siteCheckList label,
+.lengthCheckList label,
+.categoryCheckList label {
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.siteCheckList label:hover,
+.lengthCheckList label:hover,
+.categoryCheckList label:hover {
+    background-color: #1e90ff;
+}
+
 .searchField {
     margin: 10px 0px;
     padding: 11px 7px;

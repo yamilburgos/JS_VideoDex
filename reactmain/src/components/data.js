@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class VideoData extends Component {
   render() {
     return (
-      <div className="bigBorder container"> 
+      <div> 
         <div className="tempBigSquare">
 			<img alt="thumbnail"/>
 			<p>Watched</p>
@@ -11,9 +11,9 @@ export default class VideoData extends Component {
 			<p>Likes: 00</p>
 			<p>Dislikes: 00</p>
 			<p>Video Length: 0:00</p>
-			<a href="#">Favorite this</a>
+			<a href="">Favorite this</a>
 			<br/>
-			<a href="#">Watch Later</a>
+			<a href="">Watch Later</a>
 		</div>
       </div>
     );
