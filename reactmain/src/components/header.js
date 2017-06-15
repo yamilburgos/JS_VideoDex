@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Filters extends Component {
+export default class Header extends Component {
   ShowCheckBoxes() {
     this.checkboxList = document.querySelectorAll(".checkList");
 
