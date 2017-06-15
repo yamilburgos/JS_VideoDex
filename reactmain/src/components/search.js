@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 
 export default class Search extends Component {
 	getAllVideoData() {
-		this.props.youTubeSearch();
+		let query = document.querySelector(".searchField");
+
+		if(query !== null) {
+	  	console.log(query.value);
+			this.props.youTubeSearch(query.value);
+		}
 	}
 
 	displayVideoData() {
 		console.log("Displaying video data!");
-	
+
 		return this.props.youTubeResults.map(function(videoEntry, id) {
 			return (
 				<li key={id} className="clearFix">
@@ -17,11 +22,11 @@ export default class Search extends Component {
 
 					<div className="list-right">
 						<h3><a href={"https://youtube.com/embed/" + videoEntry.id.videoId + "?rel=0"}>
-								{videoEntry.snippet.title}
+							{videoEntry.snippet.title}
 						</a></h3>
 							
 						<p>By <span className="captionTitle">{videoEntry.snippet.channelTitle} </span>
-						{videoEntry.snippet.publishedAt}
+							{videoEntry.snippet.publishedAt}
 						</p>
 
 						<p>{videoEntry.snippet.description}</p>
@@ -35,18 +40,16 @@ export default class Search extends Component {
     return (
       <div>
 					<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
-						<input type="search" className="searchField" id="query" placeholder="Search YouTube, Vimeo and Dailymotion!" />
+						<input type="search" className="searchField" placeholder="Search YouTube, Vimeo and Dailymotion!"/>
 					</form>
 
-					<div id="buttons"></div>
-
 					<div>{console.log(this.props.youTubeResults)}</div>
-					
+
 					<ul id="results">
 						{this.displayVideoData()}
 					</ul>
-
-					<div>{console.log("end!")}</div>
+					
+					<div id="buttons"></div>
       </div>
     );
   }

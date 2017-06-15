@@ -25,18 +25,11 @@ export default class Main extends Component {
 	// 	});
 	// }
 
-	SearchYouTube() {
-		let part = 'snippet, id';
-		let key = 'AIzaSyCKMpw2nmPnon_gkh4EIXnbiAmrZNw-v4M';
-
-		axios.get("https://www.googleapis.com/youtube/v3/search?part=" + part + "&key=" + key)
-
-		// axios.get("https://www.googleapis.com/youtube/v3/search", {
-    //         part: 'snippet, id',
-    //         q: "test",
-    //         type: 'video',
-    //         key: 'AIzaSyCKMpw2nmPnon_gkh4EIXnbiAmrZNw-v4M' // TEMP
-    //     })
+	SearchYouTube(searchQuery) {
+		let query = searchQuery;
+		let key = 'AIzaSyCKMpw2nmPnon_gkh4EIXnbiAmrZNw-v4M'; // TEMP
+		
+		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=10&order=viewCount&key=" + key)
 		.then((response) => {
             var nextPageToken = response.nextPageToken;
             var prevPageToken = response.prevPageToken;
