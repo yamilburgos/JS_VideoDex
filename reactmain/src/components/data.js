@@ -11,9 +11,6 @@ export default class VideoData extends Component {
 			<p>Likes: 00</p>
 			<p>Dislikes: 00</p>
 			<p>Video Length: 0:00</p>
-			<a href="">Favorite this</a>
-			<br/>
-			<a href="">Watch Later</a>
 		</div>
       </div>
     );

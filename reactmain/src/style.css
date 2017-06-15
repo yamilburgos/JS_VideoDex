@@ -43,24 +43,18 @@
     bottom: 0;
 }
 
-.siteCheckList,
-.lengthCheckList,
-.categoryCheckList {
+.checkList {
     display: none;
     border: 1px #dadada solid;
 }
 
-.siteCheckList label,
-.lengthCheckList label,
-.categoryCheckList label {
+.checkList label {
     display: block;
     text-align: left;
     padding-left: 15px;
 }
 
-.siteCheckList label:hover,
-.lengthCheckList label:hover,
-.categoryCheckList label:hover {
+.checkList label:hover {
     background-color: #1e90ff;
 }
 
