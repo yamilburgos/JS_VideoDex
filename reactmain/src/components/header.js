@@ -26,7 +26,7 @@ export default class Header extends Component {
 
             <div className="checkList">
               <label><input type="checkbox" id="s1" defaultChecked/> YouTube</label>
-              <label><input type="checkbox" id="s2" defaultChecked/> Vimeo</label>
+              <label><input type="checkbox" id="s2" defaultChecked/> Twitch</label>
               <label><input type="checkbox" id="s3" defaultChecked/> Dailymotion</label>
             </div>
           </div>

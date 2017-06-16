@@ -7,13 +7,13 @@ export default class Search extends Component {
 		if(this.query !== null && this.query.value !== "") {
 	  	console.log(this.query.value);
 			this.props.youTubeSearch(this.query.value);
-			this.props.vimeoSearch(this.query.value);
+			this.props.twitchSearch(this.query.value);
 			this.props.dailyMotionSearch(this.query.value);
 		}
 	}
 
-	displayVideoData() {
-		console.log("Displaying video data!");
+	displayYouTubeData() {
+		console.log("Displaying YouTube data!");
 
 		return this.props.youTubeResults.map(function(videoEntry, id) {
 			return (
@@ -38,19 +38,46 @@ export default class Search extends Component {
 		});
 	}
 
+	displayDailyMotionData() {
+		console.log("Displaying DailyMotion data!");
+
+		return this.props.dailyMotionResults.map(function(videoEntry, id) {
+			return (
+				<li key={id} className="clearFix">
+					<div className="list-left">
+						{/*<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>*/}
+					</div>
+
+					<div className="list-right">
+						<h3><a href={videoEntry.id }>
+							{videoEntry.title}
+						</a></h3>
+							
+						<p>By <span className="captionTitle">{videoEntry.title} </span>
+							{/*{videoEntry.snippet.publishedAt}*/}
+						</p>
+
+						<p>{videoEntry.channel}</p>
+					</div>
+				</li>
+			);
+		});
+	}
+
   render() {
     return (
       <div>
 					<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
-						<input type="search" className="searchField" placeholder="Search YouTube, Vimeo and Dailymotion!"/>
+						<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
 					</form>
 
 					<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
-					<div>{console.log("VIMEO: ", this.props.vimeoResults)}</div>
+					<div>{console.log("TWITCH: ", this.props.twitchResults)}</div>
 					<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
 
 					<ul id="results">
-						{this.displayVideoData()}
+						{this.displayYouTubeData()}
+						{this.displayDailyMotionData()}
 					</ul>
 					
 					<div id="buttons"></div>

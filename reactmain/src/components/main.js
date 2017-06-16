@@ -13,7 +13,7 @@ export default class Main extends Component {
 
 		this.state = {
 			ytData: [],
-			vData: [],
+			tData: [],
 			dmData: []
 		};
 	}
@@ -43,20 +43,13 @@ export default class Main extends Component {
       	});
 	}
 
-	SearchVimeo(query) {
-		console.log("Query Vimeo videos with: ", query);
+	SearchTwitch(query) {
+		console.log("Query Twitch videos with: ", query);
 
-		axios.get("https://api.vimeo.com/videos?per_page=10&query=toy", {
-			name: "Authorization",
-			in: "header",
-			value: "Bearer e56ec69ae2e52dcc7bb9d09c238ff805"})
+		axios.get("https://api.twitch.tv/kraken/search/streams?query=toy&client_id=6m6qtmmpe0op92ru1meprq5qwjboj2")
 		.then((response) => {
-			this.setState({
-				vData: response.data.items
-			});
-		}).catch(function(error) {
-        	console.log(error);
-      	});
+			console.log(response);
+		});
 	}
 
 	SearchDailyMotion(query) {
@@ -77,10 +70,10 @@ export default class Main extends Component {
 					<Header/>
 					<Search 
 						youTubeSearch={this.SearchYouTube.bind(this)}
-						vimeoSearch={this.SearchVimeo.bind(this)}
+						twitchSearch={this.SearchTwitch.bind(this)}
 						dailyMotionSearch={this.SearchDailyMotion.bind(this)}
 						youTubeResults={(this.state.ytData !== undefined) ? this.state.ytData : []}
-						vimeoResults={(this.state.vData !== undefined) ? this.state.vData : []}
+						twitchResults={(this.state.tData !== undefined) ? this.state.tData : []}
 						dailyMotionResults={(this.state.dmData !== undefined) ? this.state.dmData : []}
 					/>
 					<Data/>
