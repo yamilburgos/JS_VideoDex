@@ -38,6 +38,10 @@ export default class Search extends Component {
 		});
 	}
 
+	displayTwitchData() {
+		console.log("Displaying Twitch Data!");
+	}
+
 	displayDailyMotionData() {
 		console.log("Displaying DailyMotion data!");
 
@@ -45,7 +49,7 @@ export default class Search extends Component {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
-						{/*<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>*/}
+						<img src={videoEntry.thumbnail_120_url} alt="vid"/>
 					</div>
 
 					<div className="list-right">
@@ -57,7 +61,7 @@ export default class Search extends Component {
 							{/*{videoEntry.snippet.publishedAt}*/}
 						</p>
 
-						<p>{videoEntry.channel}</p>
+						<p>{videoEntry.description}</p>
 					</div>
 				</li>
 			);
@@ -67,20 +71,21 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-					<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
-						<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
-					</form>
+			<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
+				<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
+			</form>
 
-					<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
-					<div>{console.log("TWITCH: ", this.props.twitchResults)}</div>
-					<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
+			<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
+			<div>{console.log("TWITCH: ", this.props.twitchResults)}</div>
+			<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
 
-					<ul id="results">
-						{this.displayYouTubeData()}
-						{this.displayDailyMotionData()}
-					</ul>
+			<ul id="results">
+				{this.displayYouTubeData()}
+				{this.displayTwitchData()}
+				{this.displayDailyMotionData()}
+			</ul>
 					
-					<div id="buttons"></div>
+			<div id="buttons"></div>
       </div>
     );
   }
