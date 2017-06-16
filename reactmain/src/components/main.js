@@ -5,7 +5,6 @@ import axios from 'axios';
 // Import Components
 import Header from "./header";
 import Search from "./search";
-import Data from "./data";
 
 export default class Main extends Component {
 	constructor(props) {
@@ -72,7 +71,7 @@ export default class Main extends Component {
 	render() {
 		return (
 			<Router>
-				<div className="App-header">
+				<div className="appSetter">
 					<Header/>
 					<Search 
 						youTubeSearch={this.SearchYouTube.bind(this)}
@@ -82,7 +81,6 @@ export default class Main extends Component {
 						twitchResults={(this.state.tData !== undefined) ? this.state.tData : []}
 						dailyMotionResults={(this.state.dmData !== undefined) ? this.state.dmData : []}
 					/>
-					<Data/>
 				</div>
 			</Router>
 		);

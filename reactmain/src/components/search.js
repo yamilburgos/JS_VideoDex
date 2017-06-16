@@ -5,7 +5,7 @@ export default class Search extends Component {
 		this.query = document.querySelector(".searchField");
 
 		if(this.query !== null && this.query.value !== "") {
-	  	console.log(this.query.value);
+	  		console.log(this.query.value);
 			this.props.youTubeSearch(this.query.value);
 			this.props.twitchSearch(this.query.value);
 			this.props.dailyMotionSearch(this.query.value);
@@ -39,7 +39,29 @@ export default class Search extends Component {
 	}
 
 	displayTwitchData() {
-		console.log("Displaying Twitch Data!");
+		console.log("Displaying Twitch Data!");;
+
+		return this.props.twitchResults.map(function(videoEntry, id) {
+			return (
+				<li key={id} className="clearFix">
+					<div className="list-left">
+						<img src={videoEntry.preview.medium} alt="vid"/>
+					</div>
+
+					<div className="list-right">
+						<h3><a href={videoEntry.url}>
+							{videoEntry.game}
+						</a></h3>
+							
+						<p>By <span className="captionTitle">{videoEntry.channel.name} </span>
+							{videoEntry.created_at}
+						</p>
+
+						<p>{videoEntry.channel.status}</p>
+					</div>
+				</li>
+			);
+		});
 	}
 
 	displayDailyMotionData() {
@@ -68,25 +90,25 @@ export default class Search extends Component {
 		});
 	}
 
-  render() {
-    return (
-      <div>
-			<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
-				<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
-			</form>
+  	render() {
+    	return (
+      		<div>
+				<form id="search-form" onSubmit={(e) => {this.getAllVideoData(); e.preventDefault();}}>
+					<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
+				</form>
 
-			<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
-			<div>{console.log("TWITCH: ", this.props.twitchResults)}</div>
-			<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
+				<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
+				<div>{console.log("TWITCH: ", this.props.twitchResults)}</div>
+				<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
 
-			<ul id="results">
-				{this.displayYouTubeData()}
-				{this.displayTwitchData()}
-				{this.displayDailyMotionData()}
-			</ul>
-					
-			<div id="buttons"></div>
-      </div>
-    );
-  }
+				<ul id="results">
+					{this.displayYouTubeData()}
+					{this.displayTwitchData()}
+					{this.displayDailyMotionData()}
+				</ul>
+						
+				<div id="buttons"></div>
+			</div>
+   		);
+  	}
 }
