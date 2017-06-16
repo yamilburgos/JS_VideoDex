@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 export default class Search extends Component {
 	getAllVideoData() {
-		let query = document.querySelector(".searchField");
+		this.query = document.querySelector(".searchField");
 
-		if(query !== null) {
-	  	console.log(query.value);
-			this.props.youTubeSearch(query.value);
+		if(this.query !== null && this.query.value !== "") {
+	  	console.log(this.query.value);
+			this.props.youTubeSearch(this.query.value);
+			this.props.vimeoSearch(this.query.value);
+			this.props.dailyMotionSearch(this.query.value);
 		}
 	}
 
@@ -43,7 +45,9 @@ export default class Search extends Component {
 						<input type="search" className="searchField" placeholder="Search YouTube, Vimeo and Dailymotion!"/>
 					</form>
 
-					<div>{console.log(this.props.youTubeResults)}</div>
+					<div>{console.log("YOUTUBE: ", this.props.youTubeResults)}</div>
+					<div>{console.log("VIMEO: ", this.props.vimeoResults)}</div>
+					<div>{console.log("DAILYMOTION: ", this.props.dailyMotionResults)}</div>
 
 					<ul id="results">
 						{this.displayVideoData()}
