@@ -13,9 +13,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-				<h1>VideoDex</h1>
-				<h2>Today</h2>
-				<input type="date"/>
+				<h1 className="siteTitle">VideoDex</h1>
 
         <form>
           <div className="multiselect">

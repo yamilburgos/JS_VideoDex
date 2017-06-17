@@ -12,6 +12,15 @@ export default class Search extends Component {
 		}
 	}
 
+	dateChange(dailyMotionDate) {
+		if(dailyMotionDate !== null) {
+			console.log(dailyMotionDate);
+			var a = new Date(dailyMotionDate * 1000);
+			console.log(a);
+			return dailyMotionDate;
+		}
+	}
+
 	displayYouTubeData() {
 		console.log("Displaying YouTube data!");
 
@@ -28,7 +37,7 @@ export default class Search extends Component {
 						</a></h3>
 							
 						<p>By <span className="captionTitle">{videoEntry.snippet.channelTitle} </span>
-							{videoEntry.snippet.publishedAt}
+							{(videoEntry.snippet.publishedAt).split("T")[0]}
 						</p>
 
 						<p>{videoEntry.snippet.description}</p>
@@ -54,7 +63,7 @@ export default class Search extends Component {
 						</a></h3>
 							
 						<p>By <span className="captionTitle">{videoEntry.channel.name} </span>
-							{videoEntry.created_at}
+							{(videoEntry.created_at).split("T")[0]}
 						</p>
 
 						<p>{videoEntry.channel.status}</p>
@@ -80,7 +89,7 @@ export default class Search extends Component {
 						</a></h3>
 							
 						<p>By <span className="captionTitle">{videoEntry.title} </span>
-							{/*{videoEntry.snippet.publishedAt}*/}
+							{videoEntry.created_time}
 						</p>
 
 						<p>{videoEntry.description}</p>

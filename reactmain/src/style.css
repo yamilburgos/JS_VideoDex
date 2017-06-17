@@ -1,5 +1,9 @@
 /* General Site Display */
 
+* {
+    /*background-color: peachpuff;*/
+}
+
 .appSetter {
     margin: 0;
     padding: 0;
@@ -7,6 +11,14 @@
     text-align: center;
     height: 150px;
     padding: 20px;
+}
+
+.siteTitle {
+    font-size: 100px;
+    font-weight: 900px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 10px 10px 5px whitesmoke;
 }
 
 
