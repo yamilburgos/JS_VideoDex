@@ -21,39 +21,31 @@ export default class Main extends Component {
 
 		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=10&order=viewCount&key=" + key)
 		.then((response) => {
-			this.setState({
-				ytData: response.data.items,
-				ready: false
-			});
-
-			this.SearchTwitch(query);
+			this.SearchTwitch(query, response.data.items);
 		}).catch((error) => {
         	console.log(error);
 			this.SearchTwitch(query);
       	});
 	}
 
-	SearchTwitch(query) {
+	SearchTwitch(query, ytData) {
 		let key = "6m6qtmmpe0op92ru1meprq5qwjboj2";
 
 		axios.get("https://api.twitch.tv/kraken/search/streams?query=" + query + "&client_id=" + key )
 		.then((response) => {
-			this.setState({
-				tData: response.data.streams,
-				ready: false
-			});
-
-			this.SearchDailyMotion(query);
+			this.SearchDailyMotion(query, ytData, response.data.streams);
 		}).catch((error) => {
         	console.log(error);
 			this.SearchDailyMotion(query);
       	});
 	}
 
-	SearchDailyMotion(query) {
+	SearchDailyMotion(query, ytData, tData) {
 		axios.get("https://api.dailymotion.com/videos?search=" + query + "&fields=created_time,description,channel,id,owner,owner.screenname,thumbnail_120_url,title&page=1&limit=10")
 		.then((response) => {
 			this.setState({
+				ytData: ytData,
+				tData: tData,
 				dmData: response.data.list,
 				ready: true
 			});

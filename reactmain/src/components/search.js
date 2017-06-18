@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PopUp from "./popUp";
 
 export default class Search extends Component {
 	getAllVideoData() {
@@ -11,21 +10,21 @@ export default class Search extends Component {
 	}
 
 	displayYouTubeData() {
-		console.log("Displaying YouTube data!", this.props.youTubeResults);
+		console.log("Displaying YouTube data!");
 		
 		return this.props.youTubeResults.map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix">
-					<div className="list-left">
-						<a href="#popup">
-							<img src={videoEntry.snippet.thumbnails.default.url} alt="vid" onClick=
+				<li key={id} className="clearFix" onClick=
 								{() => this.popupData([
 									"YouTube",
 									videoEntry.snippet.title,
 									videoEntry.snippet.channelTitle,
 									videoEntry.snippet.description,
 									videoEntry.id.videoId
-								])}/>
+								])}>
+					<div className="list-left">
+						<a href="#popup">
+							<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
 						</a>
 					</div>
 
@@ -110,10 +109,30 @@ export default class Search extends Component {
 	}
 
 	popupData(videoData) {
-		console.log("POPUPPPP!", videoData);
-		
-		return <PopUp videoData={videoData}/>;
+		this.videoTitle = document.querySelector("#videoTitle");
+		this.videoUsername = document.querySelector("#videoUsername");
+		this.videoDescription = document.querySelector("#videoDescription");
+
+		this.videoTitle.innerHTML = videoData[1];
+		this.videoUsername.innerHTML = videoData[2];
+		this.videoDescription.innerHTML = videoData[3];
+
+        this.popStyle = document.querySelector("#popup");
+
+        if(this.popStyle !== null) {
+            this.popStyle.style.opacity = 1;
+            this.popStyle.style.visibility = "visible";
+       }
 	}
+
+	popupController() {
+        this.popStyle = document.querySelector("#popup");
+
+        if(this.popStyle !== null) {
+            this.popStyle.style.opacity = 0;
+            this.popStyle.style.visibility = "hidden";
+       }
+    }
 
   	render() {
     	return (
@@ -122,17 +141,30 @@ export default class Search extends Component {
 					<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
 				</form>
 
-				{this.popupData()}
+				<div id="popup" className="overlay light">
+                    <div className="popup">
+                        <h2>What the what?</h2>
+                        {/*Video Title*/}
+                        <h2 id="videoTitle">{(this.props.videoData !== undefined) ? this.props.videoData[0] : undefined}</h2> 
 
-				<div>{console.log("Searching!")}</div>
+                        <a className="close" onClick={() => this.popupController()}>&times;</a>
+                        <div className="content">
+                            <p>Click outside the popup to close.</p>
+
+                            {/*Video Username*/}
+                            <p id="videoUsername">By <span className="captionTitle">{(this.props.videoData !== undefined) ? this.props.videoData[2] : undefined}</span></p>
+                            
+                            {/*Video Description*/}
+                            <p id="videoDescription">{(this.props.videoData !== undefined) ? this.props.videoData[1] : undefined}</p>
+                        </div>
+                    </div>
+                </div>
 
 				<ul id="results">
 					{(this.props.ready === true) ? this.displayYouTubeData() : undefined}
 					{(this.props.ready === true) ? this.displayTwitchData(): undefined}
 					{(this.props.ready === true) ? this.displayDailyMotionData() : undefined}
 				</ul>
-						
-				<div id="buttons"></div>
 			</div>
    		);
   	}
