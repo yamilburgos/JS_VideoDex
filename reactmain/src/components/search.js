@@ -12,24 +12,20 @@ export default class Search extends Component {
 
 	displayYouTubeData() {
 		console.log("Displaying YouTube data!", this.props.youTubeResults);
-
+		
 		return this.props.youTubeResults.map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix">
-					{document.addEventListener("click", () => this.workPlease([
-									"YouTube",
-									videoEntry.id.videoId,
-									videoEntry.snippet.title,
-									videoEntry.snippet.channelTitle,
-									videoEntry.snippet.description
-								]))}
-
-
 					<div className="list-left">
 						<a href="#popup">
-							<img className="button" 
-						
-								src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
+							<img src={videoEntry.snippet.thumbnails.default.url} alt="vid" onClick=
+								{() => this.workPlease([
+									"YouTube",
+									videoEntry.snippet.title,
+									videoEntry.snippet.channelTitle,
+									videoEntry.snippet.description,
+									videoEntry.id.videoId
+								])}/>
 						</a>
 					</div>
 
@@ -52,11 +48,17 @@ export default class Search extends Component {
 	displayTwitchData() {
 		console.log("Displaying Twitch Data!");;
 
-		return this.props.twitchResults.map(function(videoEntry, id) {
+		return this.props.twitchResults.map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
-						<img src={videoEntry.preview.medium} alt="vid"/>
+						<img src={videoEntry.preview.medium} alt="vid" onClick=
+							{() => this.workPlease([
+								"Twitch",
+								videoEntry.game,
+								videoEntry.channel.name,
+								videoEntry.channel.status
+							])}/>
 					</div>
 
 					<div className="list-right">
@@ -76,13 +78,19 @@ export default class Search extends Component {
 	}
 
 	displayDailyMotionData() {
-		console.log("Displaying DailyMotion data!");
+		console.log("Displaying DailyMotion data!", this.props.dailyMotionResults);
 
-		return this.props.dailyMotionResults.map(function(videoEntry, id) {
+		return this.props.dailyMotionResults.map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
-						<img src={videoEntry.thumbnail_120_url} alt="vid"/>
+						<img src={videoEntry.thumbnail_120_url} alt="vid"onClick=
+							{() => this.workPlease([
+								"DailyMotion",
+								videoEntry.title,
+								videoEntry["owner.screenname"],
+								videoEntry.description
+							])}/>
 					</div>
 
 					<div className="list-right">
@@ -101,11 +109,12 @@ export default class Search extends Component {
 		});
 	}
 
-	workPlease(newVariable) {
-		console.log("POPUPPPP!", newVariable);
-
+	workPlease(videoData) {
+		// if(newVariable[0] !== undefined) {
+		 	console.log("POPUPPPP!", videoData);
+		// }
 		return <PopUp
-			newArray={"tryu"}			
+			
 		/>
 	}
 
@@ -121,9 +130,9 @@ export default class Search extends Component {
 				<div>{console.log("Searching!")}</div>
 
 				<ul id="results">
-					{this.displayYouTubeData()}
-					{this.displayTwitchData()}
-					{this.displayDailyMotionData()}
+					{(this.props.ready === true) ? this.displayYouTubeData() : undefined}
+					{(this.props.ready === true) ? this.displayTwitchData(): undefined}
+					{(this.props.ready === true) ? this.displayDailyMotionData() : undefined}
 				</ul>
 						
 				<div id="buttons"></div>
