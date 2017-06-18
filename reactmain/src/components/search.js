@@ -14,27 +14,18 @@ export default class Search extends Component {
 		return this.props.videoResults[0].map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix" onClick=
-								{() => this.popupData([
-									"YouTube",
-									videoEntry.snippet.title,
-									videoEntry.snippet.channelTitle,
-									videoEntry.snippet.description,
-									videoEntry.id.videoId
-								], true)}>
+					{() => this.popupData([
+						"YouTube",
+						videoEntry.snippet.title,
+						videoEntry.snippet.channelTitle,
+						videoEntry.snippet.description,
+						videoEntry.id.videoId
+					], true)}>
+
 					<div className="list-left">
 						<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
-					</div>
-
-					<div className="list-right">
-						<h3><a href={"https://youtube.com/embed/" + videoEntry.id.videoId + "?rel=0"}>
-							{videoEntry.snippet.title}
-						</a></h3>
-							
-						<p>By <span className="captionTitle">{videoEntry.snippet.channelTitle} </span>
-							{(videoEntry.snippet.publishedAt).split("T")[0]}
-						</p>
-
-						<p>{videoEntry.snippet.description}</p>
+						<p>{videoEntry.snippet.title}</p>
+						<p>{videoEntry.snippet.channelTitle}</p>
 					</div>
 				</li>
 			);
@@ -45,27 +36,19 @@ export default class Search extends Component {
 		console.log("Displaying Twitch Data!");
 		return this.props.videoResults[1].map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix">
+				<li key={id} className="clearFix" onClick=
+					{() => this.popupData([
+						"Twitch",
+						videoEntry.game,
+						videoEntry.channel.name,
+						videoEntry.channel.status,
+						videoEntry.url
+					], true)}>
+
 					<div className="list-left">
-						<img src={videoEntry.preview.medium} alt="vid" onClick=
-							{() => this.popupData([
-								"Twitch",
-								videoEntry.game,
-								videoEntry.channel.name,
-								videoEntry.channel.status
-							], true)}/>
-					</div>
-
-					<div className="list-right">
-						<h3><a href={videoEntry.url}>
-							{videoEntry.game}
-						</a></h3>
-							
-						<p>By <span className="captionTitle">{videoEntry.channel.name} </span>
-							{(videoEntry.created_at).split("T")[0]}
-						</p>
-
-						<p>{videoEntry.channel.status}</p>
+						<img src={videoEntry.preview.medium} alt="vid"/>
+						<p>{videoEntry.game}</p>
+						<p>By {videoEntry.channel.name}</p>
 					</div>
 				</li>
 			);
@@ -76,27 +59,19 @@ export default class Search extends Component {
 		console.log("Displaying DailyMotion data!", this.props.dailyMotionResults);
 		return this.props.videoResults[2].map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix">
+				<li key={id} className="clearFix" onClick=
+					{() => this.popupData([
+						"DailyMotion",
+						videoEntry.title,
+						videoEntry["owner.screenname"],
+						videoEntry.description,
+						videoEntry.id
+					], true)}>
+
 					<div className="list-left">
-						<img src={videoEntry.thumbnail_120_url} alt="vid" onClick=
-							{() => this.popupData([
-								"DailyMotion",
-								videoEntry.title,
-								videoEntry["owner.screenname"],
-								videoEntry.description
-							], true)}/>
-					</div>
-
-					<div className="list-right">
-						<h3><a href={videoEntry.id }>
-							{videoEntry.title}
-						</a></h3>
-							
-						<p>By <span className="captionTitle">{videoEntry.title} </span>
-							{videoEntry.created_time}
-						</p>
-
-						<p>{videoEntry.description}</p>
+						<img src={videoEntry.thumbnail_120_url} alt="vid"/>
+						<p>{videoEntry.title}</p>
+						<p>By {videoEntry["owner.screenname"]}</p>
 					</div>
 				</li>
 			);
@@ -107,14 +82,28 @@ export default class Search extends Component {
 		this.videoTitle = document.querySelector("#videoTitle");
 		this.videoUsername = document.querySelector("#videoUsername");
 		this.videoDescription = document.querySelector("#videoDescription");
+		this.videoPlayer = document.getElementById('myIframe');
 
 		this.videoTitle.innerHTML = (displayPopup) ? videoData[1] : undefined;
-		this.videoUsername.innerHTML = (displayPopup) ? videoData[2] : undefined;
+		this.videoUsername.innerHTML = (displayPopup) ? "By " + videoData[2] : undefined;
 		this.videoDescription.innerHTML = (displayPopup) ? videoData[3] : undefined;
-
+		this.videoPlayer.src = (displayPopup) ? 
+			this.switchVideoPlayer(videoData[0], videoData[4]) : undefined;
+		
         this.popStyle = document.querySelector("#popup");
         this.popStyle.style.opacity = (displayPopup) ? 1 : 0;
         this.popStyle.style.visibility = (displayPopup) ? "visible" : "hidden";
+	}
+
+	switchVideoPlayer(videoSource, videoID) {
+		switch(videoSource){
+			case "YouTube":
+			return 'https://youtube.com/embed/' + videoID;
+			case "Twitch":
+			return "";
+			default:
+			return "";
+		}
 	}
 
   	render() {
@@ -126,9 +115,9 @@ export default class Search extends Component {
 
 				<div id="popup" className="overlay light">
                     <div className="popup">
-                        <h2 id="videoTitle"></h2> 
-
+                        <h3 id="videoTitle">Temp Title</h3> 
                         <a className="close" onClick={() => this.popupData(null, false)}>&times;</a>
+						<iframe id="myIframe" width="420" height="345"></iframe>
 
                         <div className="content">
                             <p id="videoUsername">By <span className="captionTitle"></span></p>
