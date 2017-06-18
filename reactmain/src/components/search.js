@@ -11,8 +11,7 @@ export default class Search extends Component {
 
 	displayYouTubeData() {
 		console.log("Displaying YouTube data!");
-		
-		return this.props.youTubeResults.map((videoEntry, id) => {
+		return this.props.videoResults[0].map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix" onClick=
 								{() => this.popupData([
@@ -21,11 +20,9 @@ export default class Search extends Component {
 									videoEntry.snippet.channelTitle,
 									videoEntry.snippet.description,
 									videoEntry.id.videoId
-								])}>
+								], true)}>
 					<div className="list-left">
-						<a href="#popup">
-							<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
-						</a>
+						<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
 					</div>
 
 					<div className="list-right">
@@ -45,9 +42,8 @@ export default class Search extends Component {
 	}
 
 	displayTwitchData() {
-		console.log("Displaying Twitch Data!");;
-
-		return this.props.twitchResults.map((videoEntry, id) => {
+		console.log("Displaying Twitch Data!");
+		return this.props.videoResults[1].map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
@@ -57,7 +53,7 @@ export default class Search extends Component {
 								videoEntry.game,
 								videoEntry.channel.name,
 								videoEntry.channel.status
-							])}/>
+							], true)}/>
 					</div>
 
 					<div className="list-right">
@@ -78,8 +74,7 @@ export default class Search extends Component {
 
 	displayDailyMotionData() {
 		console.log("Displaying DailyMotion data!", this.props.dailyMotionResults);
-
-		return this.props.dailyMotionResults.map((videoEntry, id) => {
+		return this.props.videoResults[2].map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
@@ -89,7 +84,7 @@ export default class Search extends Component {
 								videoEntry.title,
 								videoEntry["owner.screenname"],
 								videoEntry.description
-							])}/>
+							], true)}/>
 					</div>
 
 					<div className="list-right">
@@ -108,31 +103,19 @@ export default class Search extends Component {
 		});
 	}
 
-	popupData(videoData) {
+	popupData(videoData, displayPopup) {
 		this.videoTitle = document.querySelector("#videoTitle");
 		this.videoUsername = document.querySelector("#videoUsername");
 		this.videoDescription = document.querySelector("#videoDescription");
 
-		this.videoTitle.innerHTML = videoData[1];
-		this.videoUsername.innerHTML = videoData[2];
-		this.videoDescription.innerHTML = videoData[3];
+		this.videoTitle.innerHTML = (displayPopup) ? videoData[1] : undefined;
+		this.videoUsername.innerHTML = (displayPopup) ? videoData[2] : undefined;
+		this.videoDescription.innerHTML = (displayPopup) ? videoData[3] : undefined;
 
         this.popStyle = document.querySelector("#popup");
-
-        if(this.popStyle !== null) {
-            this.popStyle.style.opacity = 1;
-            this.popStyle.style.visibility = "visible";
-       }
+        this.popStyle.style.opacity = (displayPopup) ? 1 : 0;
+        this.popStyle.style.visibility = (displayPopup) ? "visible" : "hidden";
 	}
-
-	popupController() {
-        this.popStyle = document.querySelector("#popup");
-
-        if(this.popStyle !== null) {
-            this.popStyle.style.opacity = 0;
-            this.popStyle.style.visibility = "hidden";
-       }
-    }
 
   	render() {
     	return (
@@ -143,19 +126,13 @@ export default class Search extends Component {
 
 				<div id="popup" className="overlay light">
                     <div className="popup">
-                        <h2>What the what?</h2>
-                        {/*Video Title*/}
-                        <h2 id="videoTitle">{(this.props.videoData !== undefined) ? this.props.videoData[0] : undefined}</h2> 
+                        <h2 id="videoTitle"></h2> 
 
-                        <a className="close" onClick={() => this.popupController()}>&times;</a>
+                        <a className="close" onClick={() => this.popupData(null, false)}>&times;</a>
+
                         <div className="content">
-                            <p>Click outside the popup to close.</p>
-
-                            {/*Video Username*/}
-                            <p id="videoUsername">By <span className="captionTitle">{(this.props.videoData !== undefined) ? this.props.videoData[2] : undefined}</span></p>
-                            
-                            {/*Video Description*/}
-                            <p id="videoDescription">{(this.props.videoData !== undefined) ? this.props.videoData[1] : undefined}</p>
+                            <p id="videoUsername">By <span className="captionTitle"></span></p>
+                            <p id="videoDescription"></p>
                         </div>
                     </div>
                 </div>

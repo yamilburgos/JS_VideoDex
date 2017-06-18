@@ -9,9 +9,9 @@ export default class Main extends Component {
 		super(props);
 
 		this.state = {
-			ytData: [],
-			tData: [],
-			dmData: [],
+			youtubeData: [],
+			twitchData: [],
+			dailymotionData: [],
 			ready: false
 		};
 	}
@@ -44,9 +44,9 @@ export default class Main extends Component {
 		axios.get("https://api.dailymotion.com/videos?search=" + query + "&fields=created_time,description,channel,id,owner,owner.screenname,thumbnail_120_url,title&page=1&limit=10")
 		.then((response) => {
 			this.setState({
-				ytData: ytData,
-				tData: tData,
-				dmData: response.data.list,
+				youtubeData: ytData,
+				twitchData: tData,
+				dailymotionData: response.data.list,
 				ready: true
 			});
 		}).catch((error) => {
@@ -61,9 +61,11 @@ export default class Main extends Component {
 					<Header/>
 					<Search 
 						videoSearch={this.SearchYouTube.bind(this)}
-						youTubeResults={(this.state.ytData !== undefined) ? this.state.ytData : []}
-						twitchResults={(this.state.tData !== undefined) ? this.state.tData : []}
-						dailyMotionResults={(this.state.dmData !== undefined) ? this.state.dmData : []}
+						videoResults={[
+							(this.state.youtubeData !== undefined) ? this.state.youtubeData : [],
+							(this.state.twitchData !== undefined) ? this.state.twitchData : [],
+							(this.state.dailymotionData !== undefined) ? this.state.dailymotionData : []
+						]}
 						ready={this.state.ready}
 					/>
 				</div>
