@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import Header from "./header";
 import Search from "./search";
+import Secret from "../client_secret.json"
 
 export default class Main extends Component {
 	constructor(props) {
@@ -17,9 +18,7 @@ export default class Main extends Component {
 	}
 
 	SearchYouTube(query) {
-		let key = "AIzaSyCKMpw2nmPnon_gkh4EIXnbiAmrZNw-v4M"; // TEMP Not actual key used
-
-		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=10&order=viewCount&key=" + key)
+		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=10&order=viewCount&key=" + Secret.youtubeKey)
 		.then((response) => {
 			this.SearchTwitch(query, response.data.items);
 		}).catch((error) => {
@@ -29,9 +28,7 @@ export default class Main extends Component {
 	}
 
 	SearchTwitch(query, ytData) {
-		let key = "6m6qtmmpe0op92ru1meprq5qwjboj2";
-
-		axios.get("https://api.twitch.tv/kraken/search/streams?query=" + query + "&client_id=" + key )
+		axios.get("https://api.twitch.tv/kraken/search/streams?query=" + query + "&client_id=" + Secret.twitchKey)
 		.then((response) => {
 			this.SearchDailyMotion(query, ytData, response.data.streams);
 		}).catch((error) => {
