@@ -84,7 +84,7 @@ export default class Search extends Component {
 			return (
 				<li key={id} className="clearFix">
 					<div className="list-left">
-						<img src={videoEntry.thumbnail_120_url} alt="vid"onClick=
+						<img src={videoEntry.thumbnail_120_url} alt="vid" onClick=
 							{() => this.workPlease([
 								"DailyMotion",
 								videoEntry.title,
@@ -110,12 +110,9 @@ export default class Search extends Component {
 	}
 
 	workPlease(videoData) {
-		// if(newVariable[0] !== undefined) {
-		 	console.log("POPUPPPP!", videoData);
-		// }
-		return <PopUp
-			
-		/>
+		console.log("POPUPPPP!", videoData);
+		
+		return <PopUp videoData={videoData}/>;
 	}
 
   	render() {
