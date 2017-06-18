@@ -42,7 +42,7 @@ export default class Search extends Component {
 						videoEntry.game,
 						videoEntry.channel.name,
 						videoEntry.channel.status,
-						videoEntry.url
+						videoEntry.channel.name
 					], true)}>
 
 					<div className="list-left">
@@ -56,7 +56,7 @@ export default class Search extends Component {
 	}
 
 	displayDailyMotionData() {
-		console.log("Displaying DailyMotion data!", this.props.dailyMotionResults);
+		console.log("Displaying DailyMotion data!");
 		return this.props.videoResults[2].map((videoEntry, id) => {
 			return (
 				<li key={id} className="clearFix" onClick=
@@ -98,11 +98,11 @@ export default class Search extends Component {
 	switchVideoPlayer(videoSource, videoID) {
 		switch(videoSource){
 			case "YouTube":
-			return 'https://youtube.com/embed/' + videoID;
+				return 'https://youtube.com/embed/' + videoID;
 			case "Twitch":
-			return "";
+				return 'http://www.twitch.tv/' + videoID + "/embed";
 			default:
-			return "";
+				return "//www.dailymotion.com/embed/video/" + videoID;
 		}
 	}
 

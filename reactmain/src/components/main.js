@@ -38,7 +38,7 @@ export default class Main extends Component {
 	}
 
 	SearchDailyMotion(query, ytData, tData) {
-		axios.get("https://api.dailymotion.com/videos?search=" + query + "&fields=created_time,description,channel,id,owner,owner.screenname,thumbnail_120_url,title&page=1&limit=10")
+		axios.get("https://api.dailymotion.com/videos?search=" + query + "&fields=description,id,owner.screenname,thumbnail_120_url,title&page=1&limit=10")
 		.then((response) => {
 			this.setState({
 				youtubeData: ytData,
