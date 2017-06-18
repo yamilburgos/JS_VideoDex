@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 
 export default class PopUp extends Component {
-    revealPopup() {
+    popupController(revealCheck) {
         this.popStyle = document.querySelector("#popup");
 
         if(this.popStyle !== null) {
-            console.log(this.popStyle);
-            this.popStyle.style.opacity = 1;
-            this.popStyle.style.visibility = "visible";
-       }
-    }
-
-    hidePopup() {
-        this.popStyle = document.querySelector("#popup");
-
-        if(this.popStyle !== null) {
-            console.log(this.popStyle);
-            this.popStyle.style.opacity = 0;
-            this.popStyle.style.visibility = "hidden";
+            this.popStyle.style.opacity = (revealCheck) ? 1 : 0;
+            this.popStyle.style.visibility = (revealCheck) ? "visible" : "hidden";
        }
     }
 
@@ -25,19 +14,18 @@ export default class PopUp extends Component {
     	return (
       		<div>
 				<div id="wrapper">
-	                <p><a className="button" href="#popup">Click Me Too</a></p>
+	                <p className="button" onClick={() => this.popupController(true)}>Click Me Too</p>
                 </div>
 
                 {console.log("Is this being rendered?")}
 
                 <div id="popup" className="overlay light">
-                    <a className="cancel" href="#"> </a>
                     <div className="popup">
                         <h2>What the what?</h2>
                         {/*Video Title*/}
                         <h2>{(this.props.videoData !== undefined) ? this.props.videoData[0] : undefined}</h2> 
 
-                        <a className="close" href="#">&times;</a>
+                        <a className="close" onClick={() => this.popupController(false)}>&times;</a>
                         <div className="content">
                             <p>Click outside the popup to close.</p>
 
@@ -50,7 +38,6 @@ export default class PopUp extends Component {
                         </div>
                     </div>
                 </div>
-                {this.hidePopup()}
 			</div>
    		);
   	}

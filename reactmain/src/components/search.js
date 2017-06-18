@@ -19,7 +19,7 @@ export default class Search extends Component {
 					<div className="list-left">
 						<a href="#popup">
 							<img src={videoEntry.snippet.thumbnails.default.url} alt="vid" onClick=
-								{() => this.workPlease([
+								{() => this.popupData([
 									"YouTube",
 									videoEntry.snippet.title,
 									videoEntry.snippet.channelTitle,
@@ -53,7 +53,7 @@ export default class Search extends Component {
 				<li key={id} className="clearFix">
 					<div className="list-left">
 						<img src={videoEntry.preview.medium} alt="vid" onClick=
-							{() => this.workPlease([
+							{() => this.popupData([
 								"Twitch",
 								videoEntry.game,
 								videoEntry.channel.name,
@@ -85,7 +85,7 @@ export default class Search extends Component {
 				<li key={id} className="clearFix">
 					<div className="list-left">
 						<img src={videoEntry.thumbnail_120_url} alt="vid" onClick=
-							{() => this.workPlease([
+							{() => this.popupData([
 								"DailyMotion",
 								videoEntry.title,
 								videoEntry["owner.screenname"],
@@ -109,7 +109,7 @@ export default class Search extends Component {
 		});
 	}
 
-	workPlease(videoData) {
+	popupData(videoData) {
 		console.log("POPUPPPP!", videoData);
 		
 		return <PopUp videoData={videoData}/>;
@@ -122,7 +122,7 @@ export default class Search extends Component {
 					<input type="search" className="searchField" placeholder="Search YouTube, Twitch and Dailymotion!"/>
 				</form>
 
-				{this.workPlease()}
+				{this.popupData()}
 
 				<div>{console.log("Searching!")}</div>
 
