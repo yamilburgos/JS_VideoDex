@@ -80,7 +80,7 @@ export default class Search extends Component {
 		this.videoPlayer = document.getElementById('myIframe');
 
 		this.videoTitle.innerHTML = (displayPopup) ? videoData[1] : undefined;
-		this.videoUsername.innerHTML = (displayPopup) ? "By " + videoData[2] : undefined;
+		this.videoUsername.innerHTML = (displayPopup) ? videoData[2] : undefined;
 		this.videoDescription.innerHTML = (displayPopup) ? videoData[3] : undefined;
 		this.videoPlayer.src = (displayPopup) ? 
 			this.switchVideoPlayer(videoData[0], videoData[4]) : undefined;
@@ -115,8 +115,8 @@ export default class Search extends Component {
 						<iframe id="myIframe" width="420" height="345"></iframe>
 
                         <div className="content">
-                            <p id="videoUsername"></p>
-                            <p id="videoDescription"></p>
+                            <p>By <span id="videoUsername" className="captionTitle"></span></p>
+                            <p id="videoDescription" className="descriptionNotes"></p>
                         </div>
                     </div>
                 </div>

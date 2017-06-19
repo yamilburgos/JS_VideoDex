@@ -155,7 +155,7 @@ body {
 }
 
 .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -180,7 +180,10 @@ body {
     height: 70%;
     max-height: 600px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    position: relative;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .popup .light {
@@ -191,21 +194,26 @@ body {
 .popup h2 {
     margin-top: 0;
     color: #666;
-    width: 585px;
+    width: 710px;
 }
 
 .popup .close {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 20px;
-    right: 20px;
+    width: 60px;
+    height: 60px;
+    top: 1px;
+    right: 1px;
     opacity: 0.8;
     transition: all 200ms;
-    font-size: 24px;
+    font-size: 60px;
     font-weight: bold;
+    text-align: center;
     text-decoration: none;
     color: #666;
+}
+
+.descriptionNotes {
+    font-weight: bold;
 }
 
 .popup .close:hover {
@@ -218,9 +226,10 @@ body {
 }
 
 .popup p {
-    margin: 0 0 1em;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .popup p:last-child {
-    margin: 0;
+    height: 65px;
 }
