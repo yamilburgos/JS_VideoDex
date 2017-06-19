@@ -2,6 +2,11 @@
 
 * {
     /*background-color: peachpuff;*/
+    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+}
+
+body {
+    background: #ddd;
 }
 
 .appSetter {
@@ -17,8 +22,11 @@
     font-size: 100px;
     font-weight: 900px;
     letter-spacing: 5px;
+    text-align: center;
     text-transform: uppercase;
     text-shadow: 10px 10px 5px whitesmoke;
+    margin: 50px 0;
+    color: #333;
 }
 
 
@@ -28,49 +36,50 @@
     padding: 10px 0;
     list-style: none;
     overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
-.clearFix {
-    clear: both;
-    height: 100px;
-    margin: 10px 0px;
-    border-bottom: 1px dotted #ccc;
-}
-
-.list-left {
-    float: left;
+.listEntry {
     line-height: 1.6em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 155px;
 }
 
-.list-left img {
+.listEntry img {
     width: 100%;
     max-width: 128px;
     padding: 3px;
     border: 1px solid #ccc;
 }
 
-.list-right {
-    float: right;
-    width: 78%;
+.listEntry img:hover {
+    border: 2px dashed black;
 }
 
-.list-right p,
-.list-right small {
+.listEntry p {
     text-overflow: ellipsis;
+    text-align: center;
     overflow: hidden;
     white-space: nowrap;
-}
-
-.list-right h3,
-.list-right p,
-.list-right small {
-    text-align: left;
     color: #666;
     margin: 0;
 }
 
+.videoTitle {
+    font-weight: bold;
+}
+
 .captionTitle {
     color: #dd2826;
+}
+
+.videoTitle:hover,
+.captionTitle:hover {
+    text-decoration: underline;
 }
 
 
@@ -132,20 +141,7 @@
 }
 
 
-/*/////////////////////////////////*/
-
-body {
-    font-family: Arial, sans-serif;
-    background: #ddd;
-}
-
-h1 {
-    text-align: center;
-    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
-    color: #333;
-    text-shadow: 0 1px 0 #fff;
-    margin: 50px 0;
-}
+/* For Popup */
 
 #wrapper {
     width: 400px;
@@ -156,30 +152,6 @@ h1 {
     border-radius: 15px;
     background-clip: padding-box;
     text-align: center;
-}
-
-.button {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    padding: 5px 10px;
-    border: 1px solid #aaa;
-    background-color: #eee;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    color: #666;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #fff;
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-}
-
-.button:hover {
-    border-color: #999;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-.button:active {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
 }
 
 .overlay {
@@ -196,17 +168,6 @@ h1 {
 
 .overlay .light {
     background: rgba(255, 255, 255, 0.5);
-}
-
-.overlay .cancel {
-    position: absolute;
-    height: 100%;
-    cursor: default;
-}
-
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
 }
 
 .popup {
@@ -230,7 +191,7 @@ h1 {
 .popup h2 {
     margin-top: 0;
     color: #666;
-    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+    width: 585px;
 }
 
 .popup .close {

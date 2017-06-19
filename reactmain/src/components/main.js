@@ -18,7 +18,7 @@ export default class Main extends Component {
 	}
 
 	SearchYouTube(query) {
-		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=10&order=viewCount&key=" + Secret.youtubeKey)
+		axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=10&order=viewCount&key=" + Secret.youtubeKey)
 		.then((response) => {
 			this.SearchTwitch(query, response.data.items);
 		}).catch((error) => {

@@ -6,6 +6,7 @@ export default class Search extends Component {
 
 		if(this.query !== null && this.query.value !== "") {
 			this.props.videoSearch(this.query.value);
+			this.query.value = "";
 		}
 	}
 
@@ -13,7 +14,7 @@ export default class Search extends Component {
 		console.log("Displaying YouTube data!");
 		return this.props.videoResults[0].map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix" onClick=
+				<li key={id} className="listEntry" onClick=
 					{() => this.popupData([
 						"YouTube",
 						videoEntry.snippet.title,
@@ -22,11 +23,9 @@ export default class Search extends Component {
 						videoEntry.id.videoId
 					], true)}>
 
-					<div className="list-left">
-						<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
-						<p>{videoEntry.snippet.title}</p>
-						<p>{videoEntry.snippet.channelTitle}</p>
-					</div>
+					<img src={videoEntry.snippet.thumbnails.default.url} alt="vid"/>
+					<p className="videoTitle">{videoEntry.snippet.title}</p>
+					<p>By <span className="captionTitle">{videoEntry.snippet.channelTitle}</span></p>
 				</li>
 			);
 		});
@@ -36,7 +35,7 @@ export default class Search extends Component {
 		console.log("Displaying Twitch Data!");
 		return this.props.videoResults[1].map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix" onClick=
+				<li key={id} className="listEntry" onClick=
 					{() => this.popupData([
 						"Twitch",
 						videoEntry.game,
@@ -45,11 +44,9 @@ export default class Search extends Component {
 						videoEntry.channel.name
 					], true)}>
 
-					<div className="list-left">
-						<img src={videoEntry.preview.medium} alt="vid"/>
-						<p>{videoEntry.game}</p>
-						<p>By {videoEntry.channel.name}</p>
-					</div>
+					<img src={videoEntry.preview.medium} alt="vid"/>
+					<p className="videoTitle">{videoEntry.game}</p>
+					<p>By <span className="captionTitle">{videoEntry.channel.name}</span></p>
 				</li>
 			);
 		});
@@ -59,7 +56,7 @@ export default class Search extends Component {
 		console.log("Displaying DailyMotion data!");
 		return this.props.videoResults[2].map((videoEntry, id) => {
 			return (
-				<li key={id} className="clearFix" onClick=
+				<li key={id} className="listEntry" onClick=
 					{() => this.popupData([
 						"DailyMotion",
 						videoEntry.title,
@@ -68,11 +65,9 @@ export default class Search extends Component {
 						videoEntry.id
 					], true)}>
 
-					<div className="list-left">
-						<img src={videoEntry.thumbnail_120_url} alt="vid"/>
-						<p>{videoEntry.title}</p>
-						<p>By {videoEntry["owner.screenname"]}</p>
-					</div>
+					<img src={videoEntry.thumbnail_120_url} alt="vid"/>
+					<p className="videoTitle">{videoEntry.title}</p>
+					<p>By <span className="captionTitle">{videoEntry["owner.screenname"]}</span></p>
 				</li>
 			);
 		});
@@ -115,12 +110,12 @@ export default class Search extends Component {
 
 				<div id="popup" className="overlay light">
                     <div className="popup">
-                        <h3 id="videoTitle">Temp Title</h3> 
+                        <h2 id="videoTitle">Temp Title</h2> 
                         <a className="close" onClick={() => this.popupData(null, false)}>&times;</a>
 						<iframe id="myIframe" width="420" height="345"></iframe>
 
                         <div className="content">
-                            <p id="videoUsername">By <span className="captionTitle"></span></p>
+                            <p id="videoUsername"></p>
                             <p id="videoDescription"></p>
                         </div>
                     </div>
