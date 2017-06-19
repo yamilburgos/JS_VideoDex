@@ -52,6 +52,7 @@ body {
 .listEntry img {
     width: 100%;
     max-width: 128px;
+    max-height: 98px;
     padding: 3px;
     border: 1px solid #ccc;
 }

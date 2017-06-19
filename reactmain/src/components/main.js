@@ -55,7 +55,7 @@ export default class Main extends Component {
 		return (
 			<Router>
 				<div className="appSetter">
-					<Header/>
+					<h1 className="siteTitle">VideoDex</h1>
 					<Search 
 						videoSearch={this.SearchYouTube.bind(this)}
 						videoResults={[

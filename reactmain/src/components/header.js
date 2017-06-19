@@ -15,7 +15,7 @@ export default class Header extends Component {
       <div>
 				<h1 className="siteTitle">VideoDex</h1>
 
-        <form>
+        <form className="navBar">
           <div className="multiselect">
             <div className="selectBox" onClick={() => this.ShowCheckBoxes()}>
               <select><option>Site Filter</option></select>
